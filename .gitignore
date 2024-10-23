@@ -1,1 +1,36 @@
-site/
+# Environnements virtuels
+venv/
+.env/
+
+# Fichiers de configuration et secrets
+*.env
+*.secret
+
+# Fichiers de cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+
+# Fichiers de logs
+*.log
+*.out
+*.err
+
+# Fichiers spécifiques à l'OS
+.DS_Store
+
+# Fichiers de configuration d'éditeurs de texte/IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Artifacts de compilations, distributions
+build/
+dist/
+*.egg-info/
+
+# Dossiers spécifiques au projet
+site/  
