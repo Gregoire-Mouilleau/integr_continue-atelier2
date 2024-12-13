@@ -26,13 +26,11 @@ def generate_index_page():
 
     for filename in os.listdir('./sources'):
         if filename.endswith('.md'):
-            print(f"Processing file: {filename}")
             md_filepath = os.path.join('./sources', filename)
+            html_filename = filename.replace('.md', '.html')
             with open(md_filepath, 'r', encoding='utf-8') as file:
                 md_content = file.read()
                 title = extract_title(md_content)
-
-            html_filename = f"{filename.replace('.md', '.html')}"
             index_content += f"""
             <div class="col-md-4 mb-4">
                 <div class="card">
