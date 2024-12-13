@@ -29,10 +29,10 @@ jobs:
         sudo apt-get install -y pandoc
 
     - name: Make gen_all.sh executable
-      run: chmod +x gen_all.sh
+      run: chmod +x scripts/gen_all.sh
 
     - name: Run all scripts
-      run: bash gen_all.sh
+      run: bash scripts/gen_all.sh
 
     - name: List generated files
       run: ls -R ./site
