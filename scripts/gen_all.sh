@@ -5,6 +5,6 @@ SITE_DIR="./site"
 
 mkdir -p $SITE_DIR
 
-./gen_pages.sh
-python3 gen_index.py
-python3 gen_bureau.py
+bash ./scripts/gen_pages.sh
+python3 ./scripts/gen_index.py
+python3 ./scripts/gen_bureau.py
