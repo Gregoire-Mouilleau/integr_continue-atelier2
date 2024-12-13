@@ -3,7 +3,7 @@ name: CI/CD for Flat File Site
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build:
@@ -21,20 +21,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install markdown pandoc  # Ajoutez vos autres dépendances Python ici
+        pip install markdown pandoc
 
     - name: Set up Pandoc
       run: |
         sudo apt-get update
         sudo apt-get install -y pandoc
 
-    - name: Run Python scripts to generate HTML
-      run: |
-        python scripts/gen_index.py
-        python scripts/gen_bureau.py
+    - name: Run all scripts
+      run: bash gen_all.sh
 
     - name: List generated files
-      run: ls -R ./scripts
+      run: ls -R ./site
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,4 +46,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./scripts
+        publish_dir: ./site
