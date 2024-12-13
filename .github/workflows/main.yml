@@ -64,8 +64,9 @@ jobs:
     - name: Smoke test with curl
       run: |
         sleep 30
-        response=$(curl -s -o /dev/null -w "%{http_code}" https://<USERNAME>.github.io/<REPO_NAME>)
-        if [ "$response" -ne 200 ]; then
-          echo "Smoke test failed. HTTP response code: $response"
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://<USERNAME>.github.io/<REPO_NAME>)
+        if [ "$RESPONSE" -ne "200" ]; then
+          echo "Smoke test failed. HTTP response code: $RESPONSE"
           exit 1
         fi
+
