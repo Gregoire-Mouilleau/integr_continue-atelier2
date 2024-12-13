@@ -4,7 +4,7 @@ import markdown
 def extract_title(md_content):
     """Extracts the title from the Markdown content (first header)"""
     for line in md_content.splitlines():
-        if line.startswith('# '):  # Assuming the title is the first H1 (#)
+        if line.startswith('# '):  
             return line.lstrip('# ').strip()
     return "Sans titre"
 
@@ -23,22 +23,18 @@ def generate_index_page():
             <div class="row">
     """
 
-    # Parcours des fichiers Markdown
-    for filename in os.listdir('../sources'):
+    for filename in os.listdir('./sources'):
         if filename.endswith('.md'):
-            event_name = filename.split('-', 3)[-1].replace('.md', '')  # Extrait "evenement-X"
+            event_name = filename.split('-', 3)[-1].replace('.md', '')  
             md_filepath = os.path.join('../sources', filename)
             image_filepath = os.path.join('../sources', f'{event_name}.webp')
 
-            # Lecture du fichier Markdown pour extraire le titre
             with open(md_filepath, 'r', encoding='utf-8') as file:
                 md_content = file.read()
                 title = extract_title(md_content)
 
-            # Génération du chemin du fichier HTML correspondant
             html_filename = f"{filename.replace('.md', '.html')}"
 
-            # Ajout du titre et de l'image dans l'index
             index_content += """
             <div class="col-md-4 mb-4">
                 <div class="card">
