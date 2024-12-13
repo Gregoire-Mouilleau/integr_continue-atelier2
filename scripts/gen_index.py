@@ -26,23 +26,16 @@ def generate_index_page():
 
     for filename in os.listdir('./sources'):
         if filename.endswith('.md'):
-            event_name = filename.split('-', 3)[-1].replace('.md', '')
+            print(f"Processing file: {filename}")
             md_filepath = os.path.join('./sources', filename)
-            image_filepath = os.path.join('./sources', f'{event_name}.webp')
-
             with open(md_filepath, 'r', encoding='utf-8') as file:
                 md_content = file.read()
                 title = extract_title(md_content)
 
             html_filename = f"{filename.replace('.md', '.html')}"
-
-            index_content += """
+            index_content += f"""
             <div class="col-md-4 mb-4">
                 <div class="card">
-            """
-            if os.path.exists(image_filepath):
-                index_content += f'<img src="{image_filepath}" class="card-img-top" alt="{title}">'
-            index_content += f"""
                     <div class="card-body">
                         <h5 class="card-title">{title}</h5>
                         <a href="{html_filename}" class="btn btn-primary">Voir l'événement</a>
@@ -52,9 +45,6 @@ def generate_index_page():
             """
 
     index_content += """
-            </div>
-            <div class="text-center mt-5">
-                <a href="bureau.html" class="btn btn-secondary">Voir le bureau</a>
             </div>
         </div>
     </body>
