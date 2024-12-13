@@ -1,6 +1,10 @@
 import csv
+import os
 
 def generate_bureau_page():
+    if not os.path.exists('./site'):
+        os.makedirs('./site')
+
     with open('./sources/membres-bureau-association.csv', 'r', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         headers = next(reader)
