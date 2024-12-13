@@ -12,39 +12,23 @@ def generate_bureau_page():
         bureau_content = """
         <html>
         <head>
+            <meta charset="UTF-8">
             <title>Bureau de l'association</title>
-            <style>
-                body { font-family: Arial, sans-serif; }
-                h1 { text-align: center; }
-                table { width: 80%; margin: 20px auto; border-collapse: collapse; }
-                th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
-                th { background-color: #f2f2f2; }
-                tr:nth-child(even) { background-color: #f9f9f9; }
-                a { text-decoration: none; color: #0066cc; }
-                a:hover { text-decoration: underline; }
-            </style>
         </head>
         <body>
             <h1>Liste des membres du bureau</h1>
-            <table>
+            <table border="1">
                 <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Fonction</th>
-                </tr>
         """
+        for header in headers:
+            bureau_content += f"<th>{header}</th>"
+        bureau_content += "</tr>"
 
         for row in reader:
-            prenom, nom, email, fonction = row
-            bureau_content += f"""
-                <tr>
-                    <td>{prenom}</td>
-                    <td>{nom}</td>
-                    <td><a href="mailto:{email}">{email}</a></td>
-                    <td>{fonction}</td>
-                </tr>
-            """
+            bureau_content += "<tr>"
+            for cell in row:
+                bureau_content += f"<td>{cell}</td>"
+            bureau_content += "</tr>"
 
         bureau_content += """
             </table>
