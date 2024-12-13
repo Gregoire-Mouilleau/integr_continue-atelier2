@@ -21,12 +21,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install markdown pandoc
+        pip install markdown pandoc pytest
 
-    - name: Set up Pandoc
+    - name: Set up tools
       run: |
         sudo apt-get update
-        sudo apt-get install -y pandoc
+        sudo apt-get install -y pandoc tidy curl
 
     - name: Make gen_all.sh executable
       run: chmod +x scripts/gen_all.sh
@@ -34,8 +34,16 @@ jobs:
     - name: Run all scripts
       run: bash scripts/gen_all.sh
 
+    - name: Validate HTML
+      run: |
+        cd ./site
+        tidy -e *.html || exit 1
+
     - name: List generated files
       run: ls -R ./site
+
+    - name: Run unit and integration tests
+      run: pytest
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,3 +58,8 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./site
+
+    - name: Smoke test with curl
+      run: |
+        sleep 30
+        curl -s -o /dev/null -w "%{http_code}" https://<USERNAME>.github.io/<REPO_NAME> | grep 200
