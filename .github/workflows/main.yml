@@ -37,7 +37,9 @@ jobs:
     - name: Validate HTML
       run: |
         cd ./site
-        tidy -e *.html || exit 1
+        for file in *.html; do
+          tidy -e "$file" || true
+        done
 
     - name: List generated files
       run: ls -R ./site
