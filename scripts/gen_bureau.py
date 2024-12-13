@@ -1,13 +1,10 @@
 import csv
-import os
 
 def generate_bureau_page():
-    # Ouverture du fichier CSV
     with open('./sources/membres-bureau-association.csv', 'r', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
-        headers = next(reader)  # Lire la première ligne comme en-tête
+        headers = next(reader)
 
-        # Début du contenu HTML
         bureau_content = """
         <html>
         <head>
@@ -34,7 +31,6 @@ def generate_bureau_page():
                 </tr>
         """
 
-        # Pour chaque ligne du fichier CSV, ajouter une ligne dans le tableau HTML
         for row in reader:
             prenom, nom, email, fonction = row
             bureau_content += f"""
@@ -46,18 +42,14 @@ def generate_bureau_page():
                 </tr>
             """
 
-        # Fin du contenu HTML
         bureau_content += """
             </table>
         </body>
         </html>
         """
 
-        # Sauvegarde du fichier HTML dans le dossier 'site/'
-        with open('../site/bureau.html', 'w', encoding='utf-8') as bureau_file:
+        with open('./site/bureau.html', 'w', encoding='utf-8') as bureau_file:
             bureau_file.write(bureau_content)
-        
-        print("bureau.html has been created.")
 
 if __name__ == "__main__":
     generate_bureau_page()
