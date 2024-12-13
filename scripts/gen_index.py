@@ -7,6 +7,9 @@ def extract_title(md_content):
     return "Sans titre"
 
 def generate_index_page():
+    if not os.path.exists('./site'):
+        os.makedirs('./site')
+
     index_content = """
     <html>
     <head>
