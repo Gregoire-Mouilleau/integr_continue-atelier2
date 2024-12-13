@@ -1,4 +1,4 @@
-# Intégration Continue - Atelier 1
+# Intégration Continue - Atelier 2 & 3
 
 Ce projet génère un site web statique en HTML contenant des pages d'événements et une page listant les membres du bureau d'une association. Il utilise des fichiers Markdown et un fichier CSV comme sources de données.
 
