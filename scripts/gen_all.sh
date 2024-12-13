@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE_DIR="../sources"
+SOURCE_DIR="./sources"
 SITE_DIR="../site"
 
 mkdir -p $SITE_DIR
