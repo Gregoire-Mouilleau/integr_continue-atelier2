@@ -3,7 +3,7 @@ import os
 
 def generate_bureau_page():
     # Ouverture du fichier CSV
-    with open('../sources/membres-bureau-association.csv', 'r', encoding='utf-8') as csvfile:
+    with open('./sources/membres-bureau-association.csv', 'r', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         headers = next(reader)  # Lire la première ligne comme en-tête
 
