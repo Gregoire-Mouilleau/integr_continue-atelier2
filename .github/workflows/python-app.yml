@@ -29,7 +29,8 @@ jobs:
         sudo apt-get install -y pandoc
 
     - name: Run Bash script
-      run: bash gen_all.sh
+      run: bash scripts/gen_all.sh
+
 
     - name: Move generated files
       run: mv ../site ./wwwroot
