@@ -1,4 +1,5 @@
 import os
+import re
 
 def test_generate_event_page():
     os.system("bash scripts/gen_pages.sh")
@@ -16,7 +17,7 @@ def test_bureau_page():
 def test_event_page_content():
     with open("site/2025-01-18-evenement-1.html", "r", encoding="utf-8") as file:
         content = file.read()
-    assert "<h1>" in content
+    assert re.search(r"<h1.*?>", content), "La balise <h1> est absente ou mal formée."
 
 def test_no_empty_files():
     for root, _, files in os.walk("site"):
