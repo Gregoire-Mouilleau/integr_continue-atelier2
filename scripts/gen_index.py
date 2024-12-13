@@ -1,10 +1,8 @@
 import os
-import markdown
 
 def extract_title(md_content):
-    """Extracts the title from the Markdown content (first header)"""
     for line in md_content.splitlines():
-        if line.startswith('# '):  
+        if line.startswith('# '):
             return line.lstrip('# ').strip()
     return "Sans titre"
 
@@ -25,9 +23,9 @@ def generate_index_page():
 
     for filename in os.listdir('./sources'):
         if filename.endswith('.md'):
-            event_name = filename.split('-', 3)[-1].replace('.md', '')  
-            md_filepath = os.path.join('../sources', filename)
-            image_filepath = os.path.join('../sources', f'{event_name}.webp')
+            event_name = filename.split('-', 3)[-1].replace('.md', '')
+            md_filepath = os.path.join('./sources', filename)
+            image_filepath = os.path.join('./sources', f'{event_name}.webp')
 
             with open(md_filepath, 'r', encoding='utf-8') as file:
                 md_content = file.read()
@@ -50,22 +48,18 @@ def generate_index_page():
             </div>
             """
 
-    # Ajout d'un bouton pour accéder à la page du bureau
     index_content += """
-            </div> <!-- row -->
+            </div>
             <div class="text-center mt-5">
                 <a href="bureau.html" class="btn btn-secondary">Voir le bureau</a>
             </div>
-        </div> <!-- container -->
+        </div>
     </body>
     </html>
     """
 
-    # Sauvegarde du fichier index.html dans le dossier 'site/'
-    with open('../site/index.html', 'w', encoding='utf-8') as index_file:
+    with open('./site/index.html', 'w', encoding='utf-8') as index_file:
         index_file.write(index_content)
-
-    print("index.html has been created.")
 
 if __name__ == "__main__":
     generate_index_page()
